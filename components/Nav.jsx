@@ -4,23 +4,32 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 
 const Nav = () => {
     const { data: session } = useSession();
-
+    const [navigation, setNavigation] = useState('appointments')
     const [providers, setProviders] = useState(null);
     const [toggleDropdown, setToggleDropdown] = useState(false);
 
     useEffect(() => {
+        session && localStorage.setItem('userId', session.user.id);
+    }, [session])
+    useEffect(() => {
         (async () => {
             const res = await getProviders();
             setProviders(res);
+
         })();
     }, []);
+
     return (
         <nav>
-            <Link href="./" className="logo">
+            <Link href="./" className="logo"
+                onClick={() => setNavigation('appointments')}
+
+            >
                 <Image width={30} height={30} src='/assets/logo.png' />
                 <p className="bold">Appointify</p>
 
@@ -30,24 +39,33 @@ const Nav = () => {
             <div className="desktop_nav">
                 {session?.user ? (
                     <div className="user_nav">
-                        <Link href='/contacts'
-                            className="black_btn">
-                            Contacts
+                        <Link href='/contacts'  >
+                            <button
+                                onClick={() => setNavigation('contacts')}
+                                className={navigation === 'contacts' ? "orange_btn" : "outline_btn"}>
+                                Contacts
+                            </button>
                         </Link>
                         <Link href='/'
-                            className="black_btn">
-                            Appointments
+                        >
+                            <button
+                                onClick={() => setNavigation('appointments')}
+
+                                className={navigation === 'appointments' ? "orange_btn" : "outline_btn"}>
+                                Appointments
+                            </button>
                         </Link>
-                        <button
-                            type="button"
-                            className="black_btn"
+
+
+
+                        <LogoutIcon
                             onClick={() => {
                                 setToggleDropdown(false);
+                                localStorage.removeItem('userId')
                                 signOut();
                             }}
-                        >
-                            Sign Out
-                        </button>                        <Link href='/profile'>
+                        />
+                        <Link href='/profile'>
                             <Image
                                 src={session?.user.image}
                                 width={37}
@@ -59,14 +77,15 @@ const Nav = () => {
                 ) : <>
                     {providers &&
                         Object.values(providers).map((provider) => (
-                            <button
-                                type="butto"
+
+                            <LoginIcon
                                 key={provider.name}
-                                onClick={() => signIn(provider.id)}
-                                className="black_btn"
-                            >
-                                Sign in
-                            </button>
+                                onClick={() => {
+
+                                    signIn(provider.id)
+
+                                }}
+                            />
                         ))}
 
                 </>}
