@@ -1,6 +1,5 @@
 import Appointment from "@/models/appointment";
 import { connectToDB } from "@/utils/database";
-import App from "next/app";
 
 export const GET = async (request, { params }) => {
     try {

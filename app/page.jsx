@@ -1,65 +1,39 @@
 'use client'
+import { useEffect, useState } from 'react';
 
 import '../styles/contacts.css'
 import Link from "next/link";
 import Calendar from "@/components/Calendar"
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import PersonIcon from '@mui/icons-material/Person';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import EditCalendarIcon from '@mui/icons-material/EditCalendar';
-import AddIcon from '@mui/icons-material/Add';
+import AppointmentForm from '@/components/AppointmentForm';
 
 const Home = () => {
+    const [value, setValue] = useState(new Date());
+    const day = value.getDate()
+    const month = value.getMonth()
+    const year = value.getFullYear()
+    const hours = value.getHours()
+    const min = value.getMinutes()
+    const [title, setTitle] = useState("")
+    const [contact, setContact] = useState("")
+    useEffect(() => console.log(day, month, year, hours, min, title, contact)
+        , [contact])
+
+
     return (
         <section className="home">
             <h1>Stay organized <br /> <span className="orange_gradient">Manage your contacts and <span className='blue_gradient'>appointments</span></span></h1>
             <div className="main">
-                <Calendar />
-                <div className="add-app-wrapper">
-                    <h2 className='bold blue_gradient'>Add Appointment</h2>
-                    <Box
-                        className='add-form'
-                        component="form"
-                        sx={{
-                            '& > :not(style)': { m: 0, width: '100%', display: 'flex', direction: 'column' },
-                        }}
-                        noValidate
-
-                        autoComplete="off"
-                    >
-
-                        <TextField
-                            label="Appointment title"
-                            variant="standard"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <EditCalendarIcon />
-                                    </InputAdornment>
-                                ),
-                            }} />
-                        <TextField
-                            label="Contact"
-                            variant="standard"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <PersonIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-
-                        <div className="btn_wrapper">
-
-                            <button type='submit' className='transparent_btn'>
-                                <AddIcon style={{ color: '#f35b04' }} />
-                            </button>
-                        </div>
-                    </Box>
-                </div>
+                <Calendar
+                    value={value}
+                    onAccept={() => console.log('done')}
+                    onChange={(newValue) => setValue(newValue)}
+                />
+                <AppointmentForm
+                    title={title}
+                    contact={contact}
+                    onChangeContact={(e) => setContact(e.target.value)}
+                    onChangeTitle={(e) => setTitle(e.target.value)}
+                />
             </div>
         </section>)
 }
