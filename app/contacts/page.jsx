@@ -46,15 +46,14 @@ function page() {
     };
 
 
+    const fetchContacts = async () => {
+        const response = await fetch(`/api/users/${userId}/contacts`);
+        const data = await response.json();
 
+        setMyContacts(data);
+    };
 
     useEffect(() => {
-        const fetchContacts = async () => {
-            const response = await fetch(`/api/users/${userId}/contacts`);
-            const data = await response.json();
-
-            setMyContacts(data);
-        };
 
         if (userId) fetchContacts();
     }, [userId]);
@@ -82,6 +81,7 @@ function page() {
             });
             if (response.ok) {
                 console.log(`added`)
+                fetchContacts()
             }
 
         } catch (error) {
@@ -93,79 +93,80 @@ function page() {
         <div className="home">
             <h1>Stay organized <br /> <span className="orange_gradient">Manage your <span className='blue_gradient'>contacts</span> and appointments</span></h1>
 
-
-            <div className="add-wrapper">
-                <h2 className='orange_gradient bold'>Add contact</h2>
-                <Box
-                    onSubmit={addContact}
-                    className='add-form'
-                    component="form"
-                    sx={{
-                        '& > :not(style)': { m: 0, width: '100%', display: 'flex', direction: 'column' },
-                    }}
-                    noValidate
-
-                    autoComplete="off"
-                >
-                    <TextField
-                        label="Name"
-                        variant="standard"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <PersonIcon />
-                                </InputAdornment>
-                            ),
+            <div className="contacts_main">
+                <div className="add-wrapper">
+                    <h2 className='orange_gradient bold'>Add contact</h2>
+                    <Box
+                        onSubmit={addContact}
+                        className='add-form'
+                        component="form"
+                        sx={{
+                            '& > :not(style)': { m: 0, width: '100%', display: 'flex', direction: 'column' },
                         }}
-                    />
-                    <TextField
-                        label="Number"
-                        variant="standard"
-                        value={number}
-                        onChange={(e) => setNumber(e.target.value)}
+                        noValidate
 
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <PhoneAndroidIcon />
-                                </InputAdornment>
-                            ),
-                        }} />
-                    <TextField
-                        label="Email"
-                        variant="standard"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <EmailIcon />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
+                        autoComplete="off"
+                    >
+                        <TextField
+                            label="Name"
+                            variant="standard"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
 
-                    <div className="btn_wrapper">
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <PersonIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                        <TextField
+                            label="Number"
+                            variant="standard"
+                            value={number}
+                            onChange={(e) => setNumber(e.target.value)}
 
-                        <button type='submit' className='transparent_btn'>
-                            <PersonAddAlt1Icon style={{ color: '#f35b04' }} />
-                        </button>
-                    </div>
-                </Box>
-            </div>
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <PhoneAndroidIcon />
+                                    </InputAdornment>
+                                ),
+                            }} />
+                        <TextField
+                            label="Email"
+                            variant="standard"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <EmailIcon />
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
 
-            <div className="contacts-wrapper">
-                {myContacts.map((contact) => (
-                    <ContactCard
-                        key={contact._id}
-                        contact={contact}
-                        handleEdit={() => console.log('edit')}
-                        handleDelete={() => handleDelete && handleDelete(contact)}
-                    />
-                ))}
+                        <div className="btn_wrapper">
+
+                            <button type='submit' className='transparent_btn'>
+                                <PersonAddAlt1Icon style={{ color: '#f35b04' }} />
+                            </button>
+                        </div>
+                    </Box>
+                </div>
+
+                <div className="contacts-wrapper">
+                    {myContacts.map((contact) => (
+                        <ContactCard
+                            key={contact._id}
+                            contact={contact}
+                            handleEdit={() => console.log('edit')}
+                            handleDelete={() => handleDelete && handleDelete(contact)}
+                        />
+                    ))}
+                </div>
             </div>
         </div>)
 }

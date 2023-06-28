@@ -4,29 +4,41 @@ import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import PersonIcon from '@mui/icons-material/Person';
+import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+import EmailIcon from '@mui/icons-material/Email';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 const ContactCard = ({ contact, handleEdit, handleDelete, }) => {
     const { data: session } = useSession();
     const pathName = usePathname();
     const router = useRouter();
+    const [displayOptions, setDisplayOptions] = useState(false)
 
 
     return (
         <div className='contact_card'>
-            <h3>{contact.name}</h3>
-            <p>{contact.email}</p>
-            <p>{contact.number}</p>
-            <div className='prompt_options'>
-                <p className="bold"
+            <div
+                onClick={() => setDisplayOptions(!displayOptions)}
+                className="contact_info">
+                <h3 className=""><PersonIcon style={{ width: '1rem' }} /> {contact.name}</h3>
+                <p><PhoneAndroidIcon style={{ width: '1rem' }} /> {contact.number}</p>
+                <p className="grey_text"><EmailIcon style={{ width: '1rem' }} /> {contact.email}</p>
+            </div>
+            <div className='contact_options'>
+
+                <EditIcon
+                    style={{ color: 'grey' }}
                     onClick={handleEdit}
-                >
-                    Edit
-                </p>
-                <p className="orange_gradient bold"
+                />
+
+
+                <DeleteIcon
+                    style={{ color: 'grey' }}
                     onClick={handleDelete}
-                >
-                    Delete
-                </p>
+                />
+
             </div>
 
         </div>
