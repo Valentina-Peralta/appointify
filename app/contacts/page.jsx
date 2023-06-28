@@ -10,6 +10,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import { useEffect, useState } from 'react';
 import { useSession } from "next-auth/react";
+import ContactCard from '@/components/ContactCard';
 
 
 function page() {
@@ -18,6 +19,46 @@ function page() {
     const [name, setName] = useState()
     const [number, setNumber] = useState()
     const [userId, setUserId] = useState()
+    const [myContacts, setMyContacts] = useState([]);
+
+    /*     const handleEdit = (post) => {
+            router.push(`/update-prompt?id=${post._id}`);
+        };
+     */
+    const handleDelete = async (contact) => {
+        const hasConfirmed = confirm(
+            "Are you sure you want to delete this contact?"
+        );
+
+        if (hasConfirmed) {
+            try {
+                await fetch(`/api/users/${contact._id.toString()}/contacts`, {
+                    method: "DELETE",
+                });
+
+                const filteredContacts = myContacts.filter((item) => item._id !== contact._id);
+
+                setMyContacts(filteredContacts);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    };
+
+
+
+
+    useEffect(() => {
+        const fetchContacts = async () => {
+            const response = await fetch(`/api/users/${userId}/contacts`);
+            const data = await response.json();
+
+            setMyContacts(data);
+        };
+
+        if (userId) fetchContacts();
+    }, [userId]);
+    console.log(myContacts)
 
 
     useEffect(() => {
@@ -52,9 +93,7 @@ function page() {
         <div className="home">
             <h1>Stay organized <br /> <span className="orange_gradient">Manage your <span className='blue_gradient'>contacts</span> and appointments</span></h1>
 
-            <div className="contacts-wrapper">
 
-            </div>
             <div className="add-wrapper">
                 <h2 className='orange_gradient bold'>Add contact</h2>
                 <Box
@@ -116,6 +155,17 @@ function page() {
                         </button>
                     </div>
                 </Box>
+            </div>
+
+            <div className="contacts-wrapper">
+                {myContacts.map((contact) => (
+                    <ContactCard
+                        key={contact._id}
+                        contact={contact}
+                        handleEdit={() => console.log('edit')}
+                        handleDelete={() => handleDelete && handleDelete(contact)}
+                    />
+                ))}
             </div>
         </div>)
 }
