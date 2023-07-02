@@ -9,6 +9,7 @@
 a {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
 }
 
 .active {
@@ -17,6 +18,16 @@ a {
 
 .app {
     font-family: 'Roboto', sans-serif;
+}
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-size: .9rem;
+    letter-spacing: 1px;
 }
 
 /*NAV*/
@@ -56,7 +67,7 @@ nav {
     min-height: 100vh;
     align-items: center;
     text-align: center;
-    padding: 1rem;
+    padding: 2rem 1rem;
     padding-top: 5rem;
     z-index: 100;
     background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);
@@ -224,6 +235,7 @@ button:hover {
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .empty_schedule img {
@@ -242,6 +254,7 @@ button:hover {
         flex-direction: column;
         margin-top: 0;
         gap: 0rem;
+        max-height: 80vh;
     }
 
     h1 {
@@ -304,6 +317,8 @@ button:hover {
         z-index: 100;
     }
 
-
+    footer {
+        display: none;
+    }
 
 }

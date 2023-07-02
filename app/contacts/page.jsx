@@ -104,6 +104,8 @@ function page() {
                     ))}
                 </div>
                 <div className="add-wrapper">
+                    <h2 className='blue_gradient'>Contacts</h2>
+
                     <Box
                         onSubmit={addContact}
                         className='add-form'
@@ -119,7 +121,9 @@ function page() {
                             label="Name"
                             variant="standard"
                             value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            onChange={(e) => {
+                                setName(e.target.value)
+                            }}
 
                             InputProps={{
                                 startAdornment: (

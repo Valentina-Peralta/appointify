@@ -11,9 +11,13 @@
 
 .contacts_main {
     display: flex;
+    flex-direction: column-reverse;
     justify-content: center;
+    align-items: center;
     gap: 3rem;
     width: 100%;
+    max-height: 75vh;
+    max-width: 800px;
     margin-top: 3rem;
     background-color: rgb(255, 255, 255);
     border-radius: 40px 10px;
@@ -29,7 +33,7 @@
 }
 
 .add-wrapper {
-    width: 40%;
+    width: 80%;
     max-width: 700px;
     display: flex;
     flex-direction: column;
@@ -49,16 +53,30 @@ input {
 }
 
 .contacts-wrapper {
-    width: 40%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     max-width: 700px;
     gap: .5rem;
     padding: 1rem;
+    max-height: 35vh;
+    overflow-y: scroll;
+}
 
+.contacts-wrapper::-webkit-scrollbar {
+    width: 0.4em;
+    /* Ancho de la barra de desplazamiento */
+}
 
+.contacts-wrapper::-webkit-scrollbar-track {
+    background-color: #1a088e49;
+    /* Color de fondo de la pista */
+}
 
-
+.contacts-wrapper::-webkit-scrollbar-thumb {
+    background-color: #140383;
+    border-radius: 5px;
+    /* Color del pulgar */
 }
 
 .contact_card {
@@ -110,7 +128,6 @@ input {
 
 @media screen and (max-width: 640px) {
     .contacts_main {
-        flex-direction: column-reverse;
         height: 80vh;
         margin-top: 0;
         gap: 0;

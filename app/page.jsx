@@ -50,7 +50,7 @@ const Home = () => {
         setCurrentAppointments(appointments.filter((appointment) => appointment.day === day && appointment.month === month))
         console.log(currentAppointments, addForm)
     }
-        , [value])
+        , [value, appointments])
 
     const handleChange = (event) => {
         const {
@@ -131,7 +131,6 @@ const Home = () => {
 
                 </div>
             </div>
-
 
         </section>)
 }

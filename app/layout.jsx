@@ -20,7 +20,13 @@ const RootLayout = ({ children }) => {
                     <main className='app'>
                         <Nav />
                         {children}
+                        <footer>
+                            <a href="https://vperalta.netlify.app/" target='_blank'>
+                                <p>Built by Valentina Peralta</p>
+                            </a>
+                        </footer>
                     </main>
+
                 </Provider>
             </body>
         </html>)
