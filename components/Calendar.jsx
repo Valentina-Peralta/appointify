@@ -1,27 +1,37 @@
 'use client'
 
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { useEffect, useState } from 'react';
-import Badge from '@mui/material/Badge';
-import { PickersDay } from '@mui/x-date-pickers/PickersDay';
-import CheckIcon from '@mui/icons-material/Check';
 import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+
+import AddIcon from '@mui/icons-material/Add';
 
 
-export default function Calendar({ value, onAccept, onChange }) {
+export default function Calendar({ value, onClick, onChange }) {
 
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <div>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DateCalendar
+                    value={value}
+                    onChange={onChange}
 
-            <StaticDateTimePicker orientation="portrait"
+                />
+
+                {/*   <StaticDateTimePicker orientation="portrait"
                 onChange={onChange}
                 value={value}
                 onAccept={onAccept}
             />
-
-        </LocalizationProvider>
+ */}
+            </LocalizationProvider>
+            <button type='button'
+                onClick={onClick}
+                className='blue_btn '>
+                <AddIcon style={{ color: '#FFF' }} />
+            </button>
+        </div>
     );
 }

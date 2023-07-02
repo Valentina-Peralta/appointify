@@ -1,0 +1,20 @@
+.appointment-card {
+    width: 100%;
+    text-align: start;
+    border-radius: 12px 5px;
+    padding: .5rem;
+
+
+}
+
+.appointment-card:nth-child(3n+1) {
+    background-color: #1cb5e054;
+}
+
+.appointment-card:nth-child(3n+2) {
+    background-color: #1cb5e027;
+}
+
+.appointment-card:nth-child(3n) {
+    background-color: #1cb5e014;
+}

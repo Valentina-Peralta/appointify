@@ -30,7 +30,7 @@ const Nav = () => {
                 onClick={() => setNavigation('appointments')}
 
             >
-                <Image width={30} height={30} src='/assets/logo.png' />
+                <Image width={30} height={30} src='/assets/calendar.png' />
                 <p className="bold">Appointify</p>
 
             </Link>

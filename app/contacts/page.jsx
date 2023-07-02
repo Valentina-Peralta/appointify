@@ -90,7 +90,7 @@ function page() {
 
     return (
         <div className="home">
-            <h1>Stay organized <br /> <span className="orange_gradient">Manage your <span className='blue_gradient'>contacts</span> and appointments</span></h1>
+            <h1>Stay organized <br /> <span className="">Manage your contacts and <span className=''>appointments</span></span></h1>
 
             <div className="contacts_main">
                 <div className="add-wrapper">
@@ -167,6 +167,7 @@ function page() {
                     ))}
                 </div>
             </div>
+
         </div>)
 }
 

@@ -14,12 +14,15 @@ import PersonIcon from '@mui/icons-material/Person';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import AddIcon from '@mui/icons-material/Add';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-const AppointmentForm = ({ contact, title, onChangeContact, onChangeTitle }) => {
+
+const AppointmentForm = ({ createAppointment, personName, title, handleChange, onChangeTitle, onCancel, time, onChangeTime }) => {
     const [userId, setUserId] = useState()
     const [myContacts, setMyContacts] = useState([]);
 
-    const [personName, setPersonName] = useState([]);
     const ITEM_HEIGHT = 50;
     const ITEM_PADDING_TOP = 5;
     const MenuProps = {
@@ -35,14 +38,12 @@ const AppointmentForm = ({ contact, title, onChangeContact, onChangeTitle }) => 
         const data = await response.json();
 
         setMyContacts(data);
-        console.log(myContacts)
     };
 
     useEffect(() => {
 
         if (userId) fetchContacts();
     }, [userId]);
-    console.log(myContacts)
 
 
     useEffect(() => {
@@ -52,21 +53,13 @@ const AppointmentForm = ({ contact, title, onChangeContact, onChangeTitle }) => 
 
 
 
-    const handleChange = (event) => {
-        const {
-            target: { value },
-        } = event;
-        setPersonName(
-            // On autofill we get a stringified value.
-            typeof value === 'string' ? value.split(',') : value,
-        );
-    };
+
     return (
 
 
         <div className="add-app-wrapper">
-            <h2 className='bold blue_gradient'>Add Appointment</h2>
             <Box
+                onSubmit={createAppointment}
                 className='add-form'
                 component="form"
                 sx={{
@@ -87,25 +80,14 @@ const AppointmentForm = ({ contact, title, onChangeContact, onChangeTitle }) => 
                             </InputAdornment>
                         ),
                     }} />
-                {/*                 <TextField
-                    label="Contact"
-                    variant="standard"
-                    value={contact}
-                    onChange={onChangeContact}
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <TimePicker
+                        value={time}
+                        onChange={onChangeTime} />
 
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <PersonIcon />
-                            </InputAdornment>
-                        ),
-                    }}
-                />
- */}
-                <InputLabel id="demo-multiple-checkbox-label">Contacts</InputLabel>
+                </LocalizationProvider >
+                <InputLabel >Contacts</InputLabel>
                 <Select
-                    labelId="demo-multiple-checkbox-label"
-                    id="demo-multiple-checkbox"
                     multiple
                     value={personName}
                     onChange={handleChange}
@@ -124,8 +106,15 @@ const AppointmentForm = ({ contact, title, onChangeContact, onChangeTitle }) => 
 
                 <div className="btn_wrapper">
 
-                    <button type='submit' className='transparent_btn'>
-                        <AddIcon style={{ color: '#f35b04' }} />
+                    <button
+                        type='submit' className='transparent_btn'>
+
+                        <p className='bold blue_gradient'>Add Appointment</p>
+                    </button>
+                    <button
+                        onClick={onCancel} type='button' className='transparent_btn'>
+
+                        <p className='blue_gradient'>Cancel</p>
                     </button>
                 </div>
             </Box>
@@ -133,3 +122,19 @@ const AppointmentForm = ({ contact, title, onChangeContact, onChangeTitle }) => 
 }
 
 export default AppointmentForm
+
+/*                 <TextField
+     label="Contact"
+     variant="standard"
+     value={contact}
+     onChange={onChangeContact}
+
+     InputProps={{
+         startAdornment: (
+             <InputAdornment position="start">
+                 <PersonIcon />
+             </InputAdornment>
+         ),
+     }}
+ />
+*/

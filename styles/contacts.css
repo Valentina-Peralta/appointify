@@ -13,6 +13,9 @@
     gap: 3rem;
     width: 100%;
     margin-top: 3rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 40px 10px;
+
 }
 
 .btn_wrapper {
@@ -51,12 +54,23 @@ input {
 
 }
 
-.contact_card:nth-child(even) {
+.contact_card {
+    border-radius: 12px 5px;
+    padding: .5rem;
 
-    background-color: #0512cf11;
 }
 
-.contact_card:nth-child(odd) {}
+.contact_card:nth-child(3n+1) {
+    background-color: #1cb5e054;
+}
+
+.contact_card:nth-child(3n+2) {
+    background-color: #1cb5e027;
+}
+
+.contact_card:nth-child(3n) {
+    background-color: #1cb5e014;
+}
 
 .contact_info {
     display: flex;

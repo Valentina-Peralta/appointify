@@ -10,11 +10,24 @@ const AppointmentSchema = new Schema({
         type: String,
         required: [true, 'Title is required.'],
     },
-    Contact: {
+    contact: {
         type: String,
-
-
-    }
+    },
+    day: {
+        type: Number
+    },
+    month: {
+        type: Number
+    },
+    year: {
+        type: Number
+    },
+    hour: {
+        type: String
+    },
+    min: {
+        type: String
+    },
 });
 
 const Appointment = models.Appointment || model('Appointment', AppointmentSchema);
