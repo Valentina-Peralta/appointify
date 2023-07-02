@@ -32,7 +32,7 @@ const Nav = () => {
                 onClick={() => setNavigation('appointments')}
 
             >
-                <Image width={50} height={50} src='/assets/A.png' />
+                <Image width={50} height={50} src='/assets/A.png' alt="logo" />
                 <p className="bold">Appointify</p>
 
             </Link>
@@ -68,14 +68,13 @@ const Nav = () => {
                                     signOut();
                                 }}
                             /></button>
-                        <Link href='/profile'>
-                            <Image
-                                src={session?.user.image}
-                                width={37}
-                                height={37}
-                                className='rounded'
-                                alt='profile'
-                            /></Link>
+                        <Image
+                            src={session?.user.image}
+                            width={37}
+                            height={37}
+                            className='rounded'
+                            alt='profile'
+                        />
                     </div>
                 ) : <>
                     {providers &&
@@ -93,61 +92,6 @@ const Nav = () => {
 
                 </>}
             </div>
-            {/*  <div className="mobile_nav">
-                {session?.user ? (
-                    <div className="user_nav">
-                        <Image
-                            src={session?.user.image}
-                            width={37}
-                            height={37}
-                            className='rounded'
-                            alt='profile'
-                            onClick={() => { setToggleDropdown((prev) => !prev) }}
-                        />
-                        {toggleDropdown && (
-                            <div className="dropdown">
-                                <Link
-                                    href='/profile'
-                                    className="dropdown_link"
-                                    onClick={() => setToggleDropdown(false)}
-                                >
-                                    My Profile
-                                </Link>
-                                <Link
-                                    href='/create-prompt'
-                                    className="dropdown_link"
-                                    onClick={() => setToggleDropdown(false)}
-                                >
-                                    Create Prompt
-                                </Link>
-                                <button
-                                    type="button"
-                                    className="black_btn"
-                                    onClick={() => {
-                                        setToggleDropdown(false);
-                                        signOut();
-                                    }}
-                                >
-                                    Sign Out
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                ) : <>
-                    {providers &&
-                        Object.values(providers).map((provider) => (
-                            <button
-                                type="button"
-                                key={provider.name}
-                                onClick={() => signIn(provider.id)}
-                                className="black_btn"
-                            >
-                                Sign in
-                            </button>
-                        ))}
-
-                </>}
-            </div> */}
 
         </nav>)
 }
