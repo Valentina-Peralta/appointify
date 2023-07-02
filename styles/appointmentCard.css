@@ -3,8 +3,14 @@
     text-align: start;
     border-radius: 12px 5px;
     padding: .5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
 
 
+}
+
+.appointment-card:hover {
+    transform: scale(1.1);
 }
 
 .appointment-card:nth-child(3n+1) {
@@ -17,4 +23,12 @@
 
 .appointment-card:nth-child(3n) {
     background-color: #1cb5e014;
+}
+
+@media screen and (max-width: 640px) {
+    .appointments-wrapper {
+        width: 90%;
+        display: flex;
+        align-items: center;
+    }
 }

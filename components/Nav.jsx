@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const Nav = () => {
     const { data: session } = useSession();
@@ -30,7 +32,7 @@ const Nav = () => {
                 onClick={() => setNavigation('appointments')}
 
             >
-                <Image width={30} height={30} src='/assets/calendar.png' />
+                <Image width={50} height={50} src='/assets/A.png' />
                 <p className="bold">Appointify</p>
 
             </Link>
@@ -39,32 +41,32 @@ const Nav = () => {
             <div className="desktop_nav">
                 {session?.user ? (
                     <div className="user_nav">
-                        <Link href='/contacts'  >
-                            <button
-                                onClick={() => setNavigation('contacts')}
-                                className={navigation === 'contacts' ? "orange_btn" : "outline_btn"}>
-                                Contacts
-                            </button>
-                        </Link>
-                        <Link href='/'
-                        >
-                            <button
-                                onClick={() => setNavigation('appointments')}
+                        <div className="btns_wrapper">
+                            <Link href='/contacts' >
+                                <button
+                                    onClick={() => setNavigation('contacts')}
+                                    className={navigation === 'contacts' ? "orange_btn" : "outline_btn"}>
+                                    <PeopleAltIcon />                                </button>
+                            </Link>
+                            <Link href='/'
+                            >
+                                <button
+                                    onClick={() => setNavigation('appointments')}
 
-                                className={navigation === 'appointments' ? "orange_btn" : "outline_btn"}>
-                                Appointments
-                            </button>
-                        </Link>
+                                    className={navigation === 'appointments' ? "orange_btn" : "outline_btn"}>
+                                    <CalendarMonthIcon />                                </button>
+                            </Link>
+                        </div>
 
 
-
-                        <LogoutIcon
-                            onClick={() => {
-                                setToggleDropdown(false);
-                                localStorage.removeItem('userId')
-                                signOut();
-                            }}
-                        />
+                        <button className="outline_btn">
+                            <LogoutIcon
+                                onClick={() => {
+                                    setToggleDropdown(false);
+                                    localStorage.removeItem('userId')
+                                    signOut();
+                                }}
+                            /></button>
                         <Link href='/profile'>
                             <Image
                                 src={session?.user.image}

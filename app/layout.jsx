@@ -4,7 +4,7 @@ import Provider from '@/components/Provider'
 
 
 export const metadata = {
-    title: "Appointment planner",
+    title: "Appointify",
     description: "",
 }
 
@@ -12,7 +12,9 @@ const RootLayout = ({ children }) => {
     return (
         <html lang='en'
         >
-
+            <head>
+                <link rel="icon" href="/assets/ABlue.png" />
+            </head>
             <body>
                 <Provider>
                     <main className='app'>

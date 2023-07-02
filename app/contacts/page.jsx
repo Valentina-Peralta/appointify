@@ -93,8 +93,17 @@ function page() {
             <h1>Stay organized <br /> <span className="">Manage your contacts and <span className=''>appointments</span></span></h1>
 
             <div className="contacts_main">
+                <div className="contacts-wrapper">
+                    {myContacts.map((contact) => (
+                        <ContactCard
+                            key={contact._id}
+                            contact={contact}
+                            handleEdit={() => console.log('edit')}
+                            handleDelete={() => handleDelete && handleDelete(contact)}
+                        />
+                    ))}
+                </div>
                 <div className="add-wrapper">
-                    <h2 className='orange_gradient bold'>Add contact</h2>
                     <Box
                         onSubmit={addContact}
                         className='add-form'
@@ -150,22 +159,13 @@ function page() {
                         <div className="btn_wrapper">
 
                             <button type='submit' className='transparent_btn'>
-                                <PersonAddAlt1Icon style={{ color: '#f35b04' }} />
+                                <PersonAddAlt1Icon style={{ color: '#10045c' }} />
                             </button>
                         </div>
                     </Box>
                 </div>
 
-                <div className="contacts-wrapper">
-                    {myContacts.map((contact) => (
-                        <ContactCard
-                            key={contact._id}
-                            contact={contact}
-                            handleEdit={() => console.log('edit')}
-                            handleDelete={() => handleDelete && handleDelete(contact)}
-                        />
-                    ))}
-                </div>
+
             </div>
 
         </div>)
@@ -173,23 +173,3 @@ function page() {
 
 export default page
 
-/*  <form
-                  className="add-form">
-                  <label htmlFor="name">
-                      <input type="text" placeholder='Name' />
-                  </label>
-                  <label htmlFor="phone">
-                      <input type="text" placeholder='Phone number' />
-                  </label>
-                  <label htmlFor="email">
-                      <input type="text" placeholder='Email' />
-                  </label>
-                  <div className="btn_wrapper">
-                      <Link href='/'>
-                          <button type='button' className='outline_btn'>
-                              Cancel
-                          </button>
-                      </Link>
-                      <button type='submit' className='orange_btn'>Add Contact</button>
-                  </div>
-              </form> */

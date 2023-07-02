@@ -1,12 +1,13 @@
 'use client'
 import { useEffect, useState } from 'react';
-
+import ABlue from '../public/assets/ABlue.png'
 import '../styles/contacts.css'
 import Link from "next/link";
 import Calendar from "@/components/Calendar"
 import AppointmentForm from '@/components/AppointmentForm';
 import AppointmentCard from '@/components/AppointmentCard';
 import { add } from 'date-fns';
+import Image from 'next/image';
 
 const Home = () => {
     const [addForm, setAddForm] = useState(false)
@@ -22,18 +23,20 @@ const Home = () => {
     const [title, setTitle] = useState("")
     const [userId, setUserId] = useState('')
     const [appointments, setAppointments] = useState([])
+    const [currentAppointments, setCurrentAppointments] = useState([])
 
     const fetchAppointments = async () => {
         const response = await fetch(`/api/users/${userId}/appointments`);
         const data = await response.json();
-
         setAppointments(data);
     };
+
 
     useEffect(() => {
         setUserId(localStorage.getItem('userId'))
 
     }, [])
+
     useEffect(() => {
 
         if (userId) fetchAppointments();
@@ -41,7 +44,12 @@ const Home = () => {
 
     console.log(appointments)
 
-    useEffect(() => console.log(day, month, year, title, hours, min, personName)
+    useEffect(() => {
+        console.log(day, month, year, title, hours, min, personName)
+        console.log(value)
+        setCurrentAppointments(appointments.filter((appointment) => appointment.day === day && appointment.month === month))
+        console.log(currentAppointments, addForm)
+    }
         , [value])
 
     const handleChange = (event) => {
@@ -97,6 +105,7 @@ const Home = () => {
                     onClick={() => setAddForm(!addForm)}
                 />
                 <div className='appointments-wrapper'>
+                    <p className='bold blue_gradient'>{value.toDateString()}</p>
                     {addForm ? <AppointmentForm
                         createAppointment={createAppointment}
                         title={title}
@@ -106,15 +115,19 @@ const Home = () => {
                         time={time}
                         onChangeTime={(e) => setTime(e)}
                         onCancel={() => setAddForm(false)}
-                    /> : addForm === false && appointments ?
-                        appointments.map((appointment) => (
+                    /> : !addForm && currentAppointments.length > 0 ?
+                        currentAppointments.map((appointment) => (
 
                             <AppointmentCard
                                 key={appointment._id}
                                 appointment={appointment}
                             />
-                        )) : null
-                    }
+                        )) : !addForm && currentAppointments.length === 0 ?
+                            <div className='empty_schedule'>
+                                <Image width={250} height={250} src={ABlue} />
+                                <p className='bold'>You don't have any appointments on this day</p>
+                            </div>
+                            : null}
 
                 </div>
             </div>

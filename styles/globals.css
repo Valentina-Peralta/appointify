@@ -62,6 +62,16 @@ nav {
     background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);
 }
 
+.desktop_nav {
+    display: flex;
+    align-items: center;
+}
+
+.btns_wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
 
 h1 {
     font-size: 3rem;
@@ -75,7 +85,12 @@ button {
     height: 2rem;
     cursor: pointer;
     border-radius: 12px 5px;
+    transition: transform 0.3s ease-in-out;
 
+}
+
+button:hover {
+    transform: scale(1.1);
 }
 
 .orange_btn {
@@ -104,12 +119,12 @@ button {
 }
 
 .outline_btn {
-    background-color: white;
-    padding: .5rem 1rem;
+    background-color: transparent;
+    padding: auto 1rem;
     border: none;
     border-radius: 12px 5px;
-    color: #004e98;
-
+    color: white;
+    font-size: 1rem;
 }
 
 .transparent_btn {
@@ -190,7 +205,9 @@ button {
 .appointments-wrapper {
     display: flex;
     width: 40%;
+    height: 340px;
     flex-direction: column;
+    justify-content: flex-start;
     gap: 1rem;
 }
 
@@ -201,24 +218,76 @@ button {
     padding: .8rem;
 }
 
+.empty_schedule {
+    color: black;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.empty_schedule img {
+    opacity: 0.2;
+}
+
+.empty_schedule p {
+    position: absolute;
+    top: 50%;
+
+}
+
 @media screen and (max-width: 640px) {
     .main {
         padding: 1rem 0;
         flex-direction: column;
+        margin-top: 0;
+        gap: 0rem;
+    }
+
+    h1 {
+        display: none;
     }
 
     .logo_text {
         display: none;
     }
 
-    .desktop_nav {
-        display: none;
-    }
 
-    .mobile_nav {
+
+    .btns_wrapper {
+        position: fixed;
+        bottom: 0;
+        width: 100vw;
+        left: 0;
         display: flex;
+        justify-content: center;
+        gap: 2rem;
+        padding: 1rem;
     }
 
+    .btns_wrapper button {
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    /*     .mobile_nav {
+        display: flex;
+        justify-content: flex-end;
+        background-color: transparent;
+        backdrop-filter: blur(20px);
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 1rem;
+        width: 100%;
+    }
+
+ */
     .mobile_nav .user_nav,
     .dropdown {
         display: flex;
@@ -230,5 +299,11 @@ button {
     .add-app-wrapper {
         width: 80%;
     }
+
+    .logo img {
+        z-index: 100;
+    }
+
+
 
 }

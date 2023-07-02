@@ -20,26 +20,26 @@ const ContactCard = ({ contact, handleEdit, handleDelete, }) => {
     return (
         <div className='contact_card'>
             <div
-                onClick={() => setDisplayOptions(!displayOptions)}
+                onClick={() => { setDisplayOptions(!displayOptions) }
+                }
                 className="contact_info">
                 <h3 className=""><PersonIcon style={{ width: '1rem' }} /> {contact.name}</h3>
                 <p><PhoneAndroidIcon style={{ width: '1rem' }} /> {contact.number}</p>
-                <p className="grey_text"><EmailIcon style={{ width: '1rem' }} /> {contact.email}</p>
+                <p ><EmailIcon style={{ width: '1rem' }} /> {contact.email}</p>
             </div>
-            <div className='contact_options'>
+            {displayOptions &&
+                <div className='contact_options'>
 
-                <EditIcon
-                    style={{ color: 'grey' }}
-                    onClick={handleEdit}
-                />
+                    <EditIcon
+                        onClick={handleEdit}
+                    />
 
 
-                <DeleteIcon
-                    style={{ color: 'grey' }}
-                    onClick={handleDelete}
-                />
+                    <DeleteIcon
+                        onClick={handleDelete}
+                    />
 
-            </div>
+                </div>}
 
         </div>
     );
