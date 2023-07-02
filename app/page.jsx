@@ -40,7 +40,7 @@ const Home = () => {
     useEffect(() => {
 
         if (userId) fetchAppointments();
-    }, [userId]);
+    }, [userId, value]);
 
     console.log(appointments)
 
@@ -48,7 +48,7 @@ const Home = () => {
         setCurrentAppointments(appointments.filter((appointment) => appointment.day === day && appointment.month === month))
         console.log(currentAppointments, addForm)
     }
-        , [value, appointments])
+        , [appointments])
 
     const handleChange = (event) => {
         const {
@@ -70,7 +70,7 @@ const Home = () => {
                 method: "POST",
                 body: JSON.stringify({
                     title: title,
-                    userId: userId,
+                    crator: userId,
                     contact: personName[0],
                     day: day,
                     month: month,
