@@ -42,12 +42,7 @@ const Nav = () => {
                 {session?.user ? (
                     <div className="user_nav">
                         <div className="btns_wrapper">
-                            <Link href='/contacts' >
-                                <button
-                                    onClick={() => setNavigation('contacts')}
-                                    className={navigation === 'contacts' ? "orange_btn" : "outline_btn"}>
-                                    <PeopleAltIcon />                                </button>
-                            </Link>
+
                             <Link href='/'
                             >
                                 <button
@@ -55,6 +50,12 @@ const Nav = () => {
 
                                     className={navigation === 'appointments' ? "orange_btn" : "outline_btn"}>
                                     <CalendarMonthIcon />                                </button>
+                            </Link>
+                            <Link href='/contacts' >
+                                <button
+                                    onClick={() => setNavigation('contacts')}
+                                    className={navigation === 'contacts' ? "orange_btn" : "outline_btn"}>
+                                    <PeopleAltIcon />                                </button>
                             </Link>
                         </div>
 
@@ -92,7 +93,7 @@ const Nav = () => {
 
                 </>}
             </div>
-            <div className="mobile_nav">
+            {/*  <div className="mobile_nav">
                 {session?.user ? (
                     <div className="user_nav">
                         <Image
@@ -146,7 +147,7 @@ const Nav = () => {
                         ))}
 
                 </>}
-            </div>
+            </div> */}
 
         </nav>)
 }

@@ -56,7 +56,6 @@ function page() {
 
         if (userId) fetchContacts();
     }, [userId]);
-    console.log(myContacts)
 
 
     useEffect(() => {

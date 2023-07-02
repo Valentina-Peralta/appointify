@@ -40,13 +40,11 @@ const Home = () => {
     useEffect(() => {
 
         if (userId) fetchAppointments();
-    }, [userId, addForm]);
+    }, [userId]);
 
     console.log(appointments)
 
     useEffect(() => {
-        console.log(day, month, year, title, hours, min, personName)
-        console.log(value)
         setCurrentAppointments(appointments.filter((appointment) => appointment.day === day && appointment.month === month))
         console.log(currentAppointments, addForm)
     }
