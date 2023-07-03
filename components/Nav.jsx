@@ -28,7 +28,7 @@ const Nav = () => {
 
     return (
         <nav>
-            <Link href="./" className="logo"
+            <Link href="/" className="logo"
                 onClick={() => setNavigation('appointments')}
 
             >
