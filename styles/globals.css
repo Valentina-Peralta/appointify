@@ -297,7 +297,6 @@ button:hover {
     }
 
     .calendar_wrapper {
-        transform: scale(0.8);
         padding: 0;
         margin: 0;
         height: 330px;
