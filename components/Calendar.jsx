@@ -12,7 +12,7 @@ export default function Calendar({ value, onClick, onChange }) {
 
 
     return (
-        <div>
+        <div className='calendar_wrapper'>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DateCalendar
                     value={value}

@@ -10,6 +10,7 @@ import { add } from 'date-fns';
 import Image from 'next/image';
 
 const Home = () => {
+    const [loadingAppointments, setLoadingAppointments] = useState(true)
     const [addForm, setAddForm] = useState(false)
     const [personName, setPersonName] = useState([]);
     const [value, setValue] = useState(new Date());
@@ -47,6 +48,7 @@ const Home = () => {
     useEffect(() => {
         setCurrentAppointments(appointments.filter((appointment) => appointment.day === day && appointment.month === month))
         console.log(currentAppointments, addForm)
+        setLoadingAppointments(false)
     }
         , [appointments])
 
@@ -126,7 +128,9 @@ const Home = () => {
                                 <Image width={250} height={250} src={ABlue} />
                                 <p className='bold'>You don't have any appointments on this day</p>
                             </div>
-                            : null}
+                            : loadingAppointments ?
+                                <Image src='/assets/Loader.svg' alt='loader' />
+                                : null}
 
                 </div>
             </div>
