@@ -99,6 +99,7 @@ const Home = () => {
         <section className="home">
             <h1>Stay organized <br /> <span className="">Manage your contacts and <span className=''>appointments</span></span></h1>
             <div className="main">
+
                 <Calendar
                     value={value}
                     onAccept={() => console.log('done')}
@@ -126,7 +127,7 @@ const Home = () => {
                         )) : !addForm && currentAppointments.length === 0 ?
                             <div className='empty_schedule'>
                                 <Image width={250} height={250} src={ABlue} />
-                                <p className='bold'>You don't have any appointments on this day</p>
+                                <p className='bold'>You dkgnlgn don't have any appointments on this day</p>
                             </div>
                             : loadingAppointments ?
                                 <Image src='/assets/Loader.svg' alt='loader' />
