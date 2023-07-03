@@ -40,7 +40,7 @@ const Home = () => {
     useEffect(() => {
 
         if (userId) fetchAppointments();
-    }, [userId, value]);
+    }, [userId, value, addForm]);
 
     console.log(appointments)
 
@@ -85,6 +85,7 @@ const Home = () => {
                 //router.push("/");
                 console.log('appointment created succesfully')
                 setAddForm(false)
+
             }
         } catch (error) {
             console.log(error);
