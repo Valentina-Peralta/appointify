@@ -297,6 +297,7 @@ button:hover {
     }
 
     .calendar_wrapper {
+        width: 100%;
         padding: 0;
         margin: 0;
         height: 330px;
@@ -306,14 +307,14 @@ button:hover {
         display: none;
     }
 
-    .logo_text {
+    .logo p {
         display: none;
     }
 
 
 
     .btns_wrapper {
-        position: fixed;
+        position: absolute;
         bottom: 0;
         width: 100vw;
         left: 0;
