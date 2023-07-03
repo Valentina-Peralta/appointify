@@ -70,7 +70,7 @@ const Home = () => {
                 method: "POST",
                 body: JSON.stringify({
                     title: title,
-                    crator: userId,
+                    creator: userId,
                     contact: personName[0],
                     day: day,
                     month: month,
