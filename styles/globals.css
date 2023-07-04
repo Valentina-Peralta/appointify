@@ -39,6 +39,27 @@ footer {
     letter-spacing: 1px;
 }
 
+.get_started {
+    width: 100%;
+    margin: auto;
+    color: white;
+
+}
+
+.get_started img {
+    opacity: 0.3;
+}
+
+.get_started p {
+    position: relative;
+    top: 50%;
+    left: 10px;
+    text-align: center;
+    z-index: 100;
+    font-size: 2rem;
+
+}
+
 /*NAV*/
 .mobile_nav {
     display: none;
@@ -389,8 +410,6 @@ button:hover {
         font-size: .8rem;
     }
 
-    .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {}
-
     .css-9npbnl-MuiFormLabel-root-MuiInputLabel-root {
         font-size: .8rem;
     }
@@ -402,6 +421,11 @@ button:hover {
         gap: 0;
         align-items: flex-start;
         justify-content: flex-start;
+    }
+
+    .appointments-wrapper::-webkit-scrollbar {
+        width: 0;
+        /* Ancho de la barra de desplazamiento */
     }
 
 }

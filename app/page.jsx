@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
 import ABlue from '../public/assets/ABlue.png'
+import A from '../public/assets/A.png'
 import '../styles/contacts.css'
 import Link from "next/link";
 import Calendar from "@/components/Calendar"
@@ -96,7 +97,7 @@ const Home = () => {
         <section className="home">
 
             <h1>Stay organized <br /> <span className="">Manage your contacts and <span className=''>appointments</span></span></h1>
-            {session &&
+            {session ?
                 <div className="main">
 
                     <Calendar
@@ -134,6 +135,11 @@ const Home = () => {
                                     : null}
 
                     </div>
+                </div>
+                : <div className='get_started'>
+                    <p
+                    >Log in to get started</p>
+                    <Image width={350} height={350} src={ABlue} />
                 </div>
             }
         </section>)
