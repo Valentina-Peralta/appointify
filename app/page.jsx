@@ -94,16 +94,18 @@ const Home = () => {
     return (
 
         <section className="home">
-            <h1>Stay organized <br /> <span className="">Manage your contacts and <span className=''>appointments</span></span></h1>
-            <div className="main">
 
-                <Calendar
-                    value={value}
-                    onAccept={() => console.log('done')}
-                    onChange={(newValue) => setValue(newValue)}
-                    onClick={() => setAddForm(!addForm)}
-                />
-                {session &&
+            <h1>Stay organized <br /> <span className="">Manage your contacts and <span className=''>appointments</span></span></h1>
+            {session &&
+                <div className="main">
+
+                    <Calendar
+                        value={value}
+                        onAccept={() => console.log('done')}
+                        onChange={(newValue) => setValue(newValue)}
+                        onClick={() => setAddForm(!addForm)}
+                    />
+
                     <div className='appointments-wrapper'>
                         <p className='bold blue_gradient'>{value.toDateString()}</p>
                         {loading ?
@@ -131,9 +133,9 @@ const Home = () => {
                                     </div>
                                     : null}
 
-                    </div>}
-            </div>
-
+                    </div>
+                </div>
+            }
         </section>)
 }
 
