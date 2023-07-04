@@ -13,7 +13,6 @@ const Nav = () => {
     const { data: session } = useSession();
     const [navigation, setNavigation] = useState('appointments')
     const [providers, setProviders] = useState(null);
-    const [toggleDropdown, setToggleDropdown] = useState(false);
 
 
     useEffect(() => {
@@ -61,7 +60,6 @@ const Nav = () => {
                         <button className="outline_btn">
                             <LogoutIcon
                                 onClick={() => {
-                                    setToggleDropdown(false);
                                     localStorage.removeItem('userId')
                                     signOut();
                                 }}

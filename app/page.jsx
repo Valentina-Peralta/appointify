@@ -38,14 +38,33 @@ const Home = () => {
             const data = await response.json();
             setAppointments(data);
             setLoading(false)
-
+            console.log(appointments)
         };
         if (session?.user.id) fetchAppointments();
     }, [session?.user.id, addForm]);
 
 
     useEffect(() => {
-        setCurrentAppointments(appointments.filter((appointment) => appointment.day === day && appointment.month === month))
+        setCurrentAppointments(
+            appointments
+                .filter(
+                    (appointment) => appointment.day === day && appointment.month === month
+                )
+                .sort((a, b) => {
+                    // Obtén las horas y minutos de los appointments a y b
+                    const aHour = Number(a.hour);
+                    const aMinute = Number(a.min);
+                    const bHour = Number(b.hour);
+                    const bMinute = Number(b.min);
+
+                    // Compara las horas y luego los minutos
+                    if (aHour === bHour) {
+                        return aMinute - bMinute;
+                    } else {
+                        return aHour - bHour;
+                    }
+                })
+        );
     }
         , [appointments, addForm, value])
 
