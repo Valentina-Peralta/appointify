@@ -41,13 +41,13 @@ const Home = () => {
 
         };
         if (session?.user.id) fetchAppointments();
-    }, [session?.user.id]);
+    }, [session?.user.id, addForm]);
 
 
     useEffect(() => {
         setCurrentAppointments(appointments.filter((appointment) => appointment.day === day && appointment.month === month))
     }
-        , [appointments, value])
+        , [appointments, addForm, value])
 
     const handleChange = (event) => {
         const {
@@ -137,8 +137,7 @@ const Home = () => {
                     </div>
                 </div>
                 : <div className='get_started'>
-                    <p
-                    >Log in to get started</p>
+
                     <Image width={350} height={350} src={ABlue} />
                 </div>
             }
