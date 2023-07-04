@@ -15,9 +15,7 @@ const Nav = () => {
     const [providers, setProviders] = useState(null);
     const [toggleDropdown, setToggleDropdown] = useState(false);
 
-    useEffect(() => {
-        session && localStorage.setItem('userId', session.user.id);
-    }, [session])
+
     useEffect(() => {
         (async () => {
             const res = await getProviders();
@@ -81,6 +79,7 @@ const Nav = () => {
                         Object.values(providers).map((provider) => (
 
                             <LoginIcon
+                                className="login"
                                 key={provider.name}
                                 onClick={() => {
 
