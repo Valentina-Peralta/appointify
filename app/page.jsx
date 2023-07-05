@@ -132,6 +132,7 @@ const Home = () => {
                         onChange={(newValue) => setValue(newValue)}
                         onClick={() => setAddForm(!addForm)}
                         highlightedDays={highlightedDays}
+                        onMonthChange={(newValue) => setValue(newValue)}
                     />
 
                     <div className='appointments-wrapper'>

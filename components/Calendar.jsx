@@ -2,9 +2,7 @@
 
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import Badge from '@mui/material/Badge';
 import { PickersDay } from '@mui/x-date-pickers';
@@ -20,6 +18,7 @@ function ServerDay(props) {
 
     const isSelected =
         !outsideCurrentMonth && highlightedDays.includes(day.getDate());
+    console.log(day, outsideCurrentMonth)
 
     return (
         <Badge
@@ -33,14 +32,14 @@ function ServerDay(props) {
 }
 
 
-export default function Calendar({ value, onClick, onChange, highlightedDays }) {
+export default function Calendar({ value, onClick, onChange, highlightedDays, onMonthChange }) {
     return (
         <div className='calendar_wrapper'>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DateCalendar
                     value={value}
                     onChange={onChange}
-                    onMonthChange={() => console.log('month change')}
+                    onMonthChange={onMonthChange}
                     slots={{
                         day: ServerDay,
                     }}
