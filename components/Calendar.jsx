@@ -32,7 +32,7 @@ function ServerDay(props) {
 }
 
 
-export default function Calendar({ value, onClick, onChange, highlightedDays, onMonthChange }) {
+export default function Calendar({ value, onClick, onChange, highlightedDays, onMonthChange, addForm }) {
     return (
         <div className='calendar_wrapper'>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -52,11 +52,12 @@ export default function Calendar({ value, onClick, onChange, highlightedDays, on
                 />
 
             </LocalizationProvider>
-            <button type='button'
-                onClick={onClick}
-                className='blue_btn '>
-                <AddIcon style={{ color: '#FFF' }} />
-            </button>
+            {!addForm &&
+                <button type='button'
+                    onClick={onClick}
+                    className='blue_btn '>
+                    <AddIcon style={{ color: '#FFF' }} />
+                </button>}
         </div>
     );
 }

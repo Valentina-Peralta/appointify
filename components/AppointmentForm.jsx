@@ -2,7 +2,6 @@
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
@@ -10,8 +9,6 @@ import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-import PersonIcon from '@mui/icons-material/Person';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import AddIcon from '@mui/icons-material/Add';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
@@ -107,14 +104,13 @@ const AppointmentForm = ({ createAppointment, personName, title, handleChange, o
                 <div className="btn_wrapper">
 
                     <button
-                        type='submit' className='transparent_btn'>
-
-                        <p className='bold blue_gradient'>Add Appointment</p>
-                    </button>
-                    <button
                         onClick={onCancel} type='button' className='transparent_btn'>
 
                         <p className='blue_gradient'>Cancel</p>
+                    </button>
+                    <button type='submit'
+                        className='blue_btn '>
+                        <AddIcon style={{ color: '#FFF' }} />
                     </button>
                 </div>
             </Box>

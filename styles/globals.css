@@ -135,9 +135,7 @@ button {
 
 }
 
-button:hover {
-    transform: scale(1.1);
-}
+button:hover {}
 
 .orange_btn {
     background-color: #1CB5E0;
@@ -185,8 +183,16 @@ button:hover {
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    position: relative;
-    bottom: 2rem;
+    position: absolute;
+    bottom: 0rem;
+    right: 50%;
+    transform: scale(1);
+    transform: translateX(50%);
+}
+
+
+.btn_wrapper .blue_btn {
+    bottom: 0;
 }
 
 /* .outline_btn:hover {
@@ -243,12 +249,17 @@ button:hover {
 
 }
 
+.calendar_wrapper {
+    position: relative;
+}
+
 .add-app-wrapper {
     width: 100%;
     max-width: 600px;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    position: relative;
 
 }
 
