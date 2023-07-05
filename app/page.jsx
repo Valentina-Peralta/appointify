@@ -27,7 +27,7 @@ const Home = () => {
     const [title, setTitle] = useState("")
     const [appointments, setAppointments] = useState([])
     const [currentAppointments, setCurrentAppointments] = useState([])
-
+    const [highlightedDays, setHighlightedDays] = useState([])
 
 
 
@@ -39,10 +39,17 @@ const Home = () => {
             setAppointments(data);
             setLoading(false)
             console.log(appointments)
+
         };
         if (session?.user.id) fetchAppointments();
+
     }, [session?.user.id, addForm]);
 
+    useEffect(() => {
+        const appointmentsByMonth = appointments.filter(appointment => appointment.month === month);
+        const daysToHighlight = appointmentsByMonth.map(appointment => appointment.day);
+        setHighlightedDays(daysToHighlight);
+    }, [appointments, value]);
 
     useEffect(() => {
         setCurrentAppointments(
@@ -51,13 +58,11 @@ const Home = () => {
                     (appointment) => appointment.day === day && appointment.month === month
                 )
                 .sort((a, b) => {
-                    // Obtén las horas y minutos de los appointments a y b
                     const aHour = Number(a.hour);
                     const aMinute = Number(a.min);
                     const bHour = Number(b.hour);
                     const bMinute = Number(b.min);
 
-                    // Compara las horas y luego los minutos
                     if (aHour === bHour) {
                         return aMinute - bMinute;
                     } else {
@@ -65,6 +70,8 @@ const Home = () => {
                     }
                 })
         );
+
+
     }
         , [appointments, addForm, value])
 
@@ -124,6 +131,7 @@ const Home = () => {
                         onAccept={() => console.log('done')}
                         onChange={(newValue) => setValue(newValue)}
                         onClick={() => setAddForm(!addForm)}
+                        highlightedDays={highlightedDays}
                     />
 
                     <div className='appointments-wrapper'>
