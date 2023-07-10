@@ -31,11 +31,15 @@ const ContactCard = ({ contact, handleEdit, handleDelete, }) => {
                 <div className='contact_options'>
 
                     <EditIcon
+                        style={{ color: '#10045c' }}
+
                         onClick={handleEdit}
                     />
 
 
                     <DeleteIcon
+                        style={{ color: '#10045c' }}
+
                         onClick={handleDelete}
                     />
 

@@ -166,6 +166,7 @@ const Home = () => {
                     </div>
                 </div>
                 : <div className='get_started'>
+                    <h1>Stay organized <br /> <span className="">Manage your contacts and <span className=''>appointments</span></span></h1>
 
                     <Image width={350} height={350} src={ABlue} />
                 </div>

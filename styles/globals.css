@@ -50,6 +50,10 @@ footer {
     opacity: 0.3;
 }
 
+.get_started h1 {
+    display: none;
+}
+
 .get_started p {
     position: relative;
     top: 50%;
@@ -236,7 +240,6 @@ button:hover {}
     width: 100%;
     max-width: 1000px;
     min-height: 400px;
-
     height: 55vh;
     padding: 2rem;
     display: flex;
@@ -246,6 +249,7 @@ button:hover {}
     background-color: rgb(255, 255, 255);
     margin-top: 5rem;
     border-radius: 40px 10px;
+    overflow-y: hidden;
 
 }
 
@@ -341,8 +345,16 @@ button:hover {}
         height: 330px;
     }
 
-    h1 {
+    .home h1 {
         display: none;
+    }
+
+    .get_started h1 {
+        display: inline;
+        position: absolute;
+        z-index: 100;
+        right: 50%;
+        transform: translateX(50%);
     }
 
     .logo p {
