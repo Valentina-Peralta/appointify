@@ -372,12 +372,13 @@ button:hover {}
     .btns_wrapper {
         position: absolute;
         bottom: 0;
-        width: 100vw;
-        left: 0;
+        left: 50%;
         display: flex;
         justify-content: center;
         gap: 2rem;
         padding: 1rem;
+        z-index: 1;
+        transform: translateX(-50%);
     }
 
     .btns_wrapper button {
@@ -409,6 +410,10 @@ button:hover {}
         flex-direction: column;
         gap: 1rem;
         align-items: flex-end;
+    }
+
+    .user_nav {
+        z-index: 1000;
     }
 
     .add-app-wrapper {

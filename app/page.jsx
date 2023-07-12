@@ -30,6 +30,7 @@ const Home = () => {
     const [highlightedDays, setHighlightedDays] = useState([])
 
 
+    console.log(session, appointments)
 
 
     useEffect(() => {
@@ -38,12 +39,16 @@ const Home = () => {
             const data = await response.json();
             setAppointments(data);
             setLoading(false)
-            console.log(appointments)
 
         };
-        if (session?.user.id) fetchAppointments();
+        if (session?.user.id) {
+            fetchAppointments();
+            console.log(session, appointments)
+        }
 
     }, [session?.user.id, addForm]);
+
+    console.log(session, appointments)
 
     useEffect(() => {
         const appointmentsByMonth = appointments.filter(appointment => appointment.month === month);

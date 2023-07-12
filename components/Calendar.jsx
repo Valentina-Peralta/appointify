@@ -18,7 +18,6 @@ function ServerDay(props) {
 
     const isSelected =
         !outsideCurrentMonth && highlightedDays.includes(day.getDate());
-    console.log(day, outsideCurrentMonth)
 
     return (
         <Badge
