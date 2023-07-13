@@ -2,16 +2,16 @@ import '../styles/appointmentCard.css'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-const AppointmentCard = (appointment, handleDelete, handleEdit) => {
+const AppointmentCard = ({ appointment, handleDelete, handleEdit }) => {
 
     console.log(appointment)
     return (
         <div className='appointment-card'>
             <div>
-                <p className=''>{appointment.appointment.hour + ':' + appointment.appointment.min + ' ' + appointment.appointment.day + '/' + appointment.appointment.month}</p>
+                <p className=''>{appointment.hour + ':' + appointment.min + ' ' + appointment.day + '/' + appointment.month}</p>
                 <div className="appointment-wrapper">
-                    <p className='bold'>{appointment.appointment.title}</p>
-                    <p>{appointment.appointment.contact}</p>
+                    <p className='bold'>{appointment.title}</p>
+                    <p>{appointment.contact}</p>
                 </div>
             </div>
             <div className='appointment_options'>

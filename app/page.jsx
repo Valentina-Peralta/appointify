@@ -98,6 +98,25 @@ const Home = () => {
             typeof value === 'string' ? value.split(',') : value,
         );
     };
+    const handleDelete = async (appointment) => {
+        const hasConfirmed = confirm(
+            "Are you sure you want to delete this appointment?"
+        );
+
+        if (hasConfirmed) {
+            try {
+                await fetch(`/api/users/${appointment._id.toString()}/appointments`, {
+                    method: "DELETE",
+                });
+
+                const filteredAppointments = appointments.filter((item) => item._id !== appointment._id);
+
+                setAppointments(filteredAppointments);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    };
 
 
     const createAppointment = async (e) => {
@@ -171,6 +190,7 @@ const Home = () => {
                                     <AppointmentCard
                                         key={appointment._id}
                                         appointment={appointment}
+                                        handleDelete={() => handleDelete && handleDelete(appointment)}
                                     />
                                 )) : !addForm && currentAppointments.length === 0 ?
                                     <div className='empty_schedule'>
