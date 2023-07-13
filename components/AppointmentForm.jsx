@@ -51,6 +51,7 @@ const AppointmentForm = ({ createAppointment, personName, title, handleChange, o
 
 
         <div className="add-app-wrapper">
+            <h3 className='blue_gradient'>Add Appointment</h3>
             <Box
                 onSubmit={createAppointment}
                 className='add-form'

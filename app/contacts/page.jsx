@@ -41,7 +41,7 @@ function page() {
 
                 const filteredContacts = myContacts.filter((item) => item._id !== contact._id);
 
-                setMyContacts(filteredContacts);
+                setFilteredContacts(filteredContacts);
             } catch (error) {
                 console.log(error);
             }
