@@ -21,6 +21,8 @@ function page() {
     const [myContacts, setMyContacts] = useState([]);
     const [loading, setLoading] = useState(true)
     const [add, setAdd] = useState(false)
+    const [filteredContacts, setFilteredContacts] = useState(myContacts); // Variable para almacenar los contactos filtrados
+
 
     /*     const handleEdit = (post) => {
             router.push(`/update-prompt?id=${post._id}`);
@@ -55,6 +57,7 @@ function page() {
             const data = await response.json();
 
             setMyContacts(data.sort((a, b) => a.name.localeCompare(b.name)));
+            setFilteredContacts([...data])
             setLoading(false)
         };
         if (session?.user.id) fetchContacts();
@@ -93,7 +96,7 @@ function page() {
             {session &&
                 <div className="contacts_main">
                     <div className="contacts-wrapper">
-                        {!loading && myContacts.map((contact) => (
+                        {!loading && filteredContacts.map((contact) => (
                             <ContactCard
                                 key={contact._id}
                                 contact={contact}
@@ -122,8 +125,24 @@ function page() {
                                 variant="standard"
                                 value={name}
                                 onChange={(e) => {
-                                    setName(e.target.value)
+                                    const inputValue = e.target.value.toLowerCase(); // Convertir a minúsculas
+
+                                    setName(inputValue);
+
+                                    const updatedContacts = myContacts.filter((contact) => {
+                                        const contactName = contact.name.toLowerCase(); // Convertir a minúsculas
+                                        return contactName.includes(inputValue);
+                                    });
+
+                                    setFilteredContacts(updatedContacts); // Actualizar la lista de contactos filtrados
+
+                                    // Si el valor del input está vacío, mostrar todos los contactos sin filtrar
+                                    if (!inputValue) {
+                                        setFilteredContacts(myContacts);
+                                    }
                                 }}
+                                En
+
 
                                 InputProps={{
                                     startAdornment: (
