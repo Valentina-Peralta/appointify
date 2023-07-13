@@ -131,7 +131,7 @@ const Home = () => {
                 body: JSON.stringify({
                     title: title,
                     creator: session?.user.id,
-                    contact: personName[0],
+                    contact: personName.join(', '),
                     day: day,
                     month: month,
                     year: year,
@@ -176,6 +176,7 @@ const Home = () => {
                         <p className='bold blue_gradient'>{value.toDateString()}</p>
                         {loading ?
                             <Image width={100} height={100} src='/assets/Loader.svg' />
+
                             : addForm ? <AppointmentForm
                                 createAppointment={createAppointment}
                                 title={title}

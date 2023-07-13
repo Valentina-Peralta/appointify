@@ -215,7 +215,7 @@ button:hover {}
     border-radius: 50%;
     position: absolute;
     bottom: 0rem;
-    right: 40%;
+    right: 43%;
     transform: scale(1);
     animation: pulse 1s infinite;
 
@@ -456,6 +456,7 @@ button:hover {}
     }
 
     .add-app-wrapper h3 {
+        display: inline;
         margin-bottom: 2rem;
     }
 
