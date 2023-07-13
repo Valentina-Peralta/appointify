@@ -2,7 +2,7 @@ import '../styles/appointmentCard.css'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-const AppointmentCard = ({ appointment, handleDelete, handleEdit }) => {
+const AppointmentCard = ({ appointment, handleDelete }) => {
 
     console.log(appointment)
     return (
@@ -16,10 +16,6 @@ const AppointmentCard = ({ appointment, handleDelete, handleEdit }) => {
             </div>
             <div className='appointment_options'>
 
-                <EditIcon
-                    style={{ color: '#10045c' }}
-                    onClick={handleEdit}
-                />
 
 
                 <DeleteIcon

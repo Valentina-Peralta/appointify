@@ -14,7 +14,6 @@ const ContactCard = ({ contact, handleEdit, handleDelete, }) => {
     const { data: session } = useSession();
     const pathName = usePathname();
     const router = useRouter();
-    const [displayOptions, setDisplayOptions] = useState(false)
 
 
     return (
@@ -27,23 +26,23 @@ const ContactCard = ({ contact, handleEdit, handleDelete, }) => {
                 <p><PhoneAndroidIcon style={{ width: '1rem' }} /> {contact.number}</p>
                 <p ><EmailIcon style={{ width: '1rem' }} /> {contact.email}</p>
             </div>
-            {displayOptions &&
-                <div className='contact_options'>
 
-                    <EditIcon
+            <div className='contact_options'>
+
+                {/*     <EditIcon
                         style={{ color: '#10045c' }}
 
                         onClick={handleEdit}
-                    />
+                    /> */}
 
 
-                    <DeleteIcon
-                        style={{ color: '#10045c' }}
+                <DeleteIcon
+                    style={{ color: '#10045c' }}
 
-                        onClick={handleDelete}
-                    />
+                    onClick={handleDelete}
+                />
 
-                </div>}
+            </div>
 
         </div>
     );

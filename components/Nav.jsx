@@ -12,7 +12,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 
 const Nav = () => {
     const { data: session } = useSession();
-    const [navigation, setNavigation] = useState('')
+    const [navigation, setNavigation] = useState('appointments')
     const [providers, setProviders] = useState(null);
     useEffect(() => {
         (async () => {

@@ -14,7 +14,9 @@
 .appointment_options {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     cursor: pointer;
+    opacity: 0.6
 }
 
 
