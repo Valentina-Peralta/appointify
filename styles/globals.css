@@ -87,8 +87,28 @@ nav {
 
 }
 
+.secondary_text {
+    font-size: .8rem;
+    opacity: 0.8;
+}
+
 .login {
     cursor: pointer;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .logo {
@@ -195,9 +215,10 @@ button:hover {}
     border-radius: 50%;
     position: absolute;
     bottom: 0rem;
-    right: 50%;
+    right: 40%;
     transform: scale(1);
-    transform: translateX(50%);
+    animation: pulse 1s infinite;
+
 }
 
 

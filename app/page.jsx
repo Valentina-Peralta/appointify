@@ -28,10 +28,20 @@ const Home = () => {
     const [appointments, setAppointments] = useState([])
     const [currentAppointments, setCurrentAppointments] = useState([])
     const [highlightedDays, setHighlightedDays] = useState([])
+    const [myContacts, setMyContacts] = useState([]);
 
 
     console.log(session, appointments)
 
+    useEffect(() => {
+        const fetchContacts = async () => {
+            const response = await fetch(`/api/users/${session?.user.id}/contacts`);
+            const data = await response.json();
+
+            setMyContacts(data);
+        };
+        if (session?.user.id) fetchContacts();
+    }, [session?.user.id]);
 
     useEffect(() => {
         const fetchAppointments = async () => {
@@ -115,6 +125,7 @@ const Home = () => {
                 //router.push("/");
                 console.log('appointment created succesfully')
                 setAddForm(false)
+                setTitle('')
 
             }
         } catch (error) {

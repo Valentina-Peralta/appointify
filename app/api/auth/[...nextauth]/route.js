@@ -3,13 +3,15 @@ import GoogleProvider from 'next-auth/providers/google';
 import { connectToDB } from '@/utils/database';
 import User from '@/models/user';
 
+
 //authentication handler, it uses the 'NextAuth' function to configure an authentication instance
 const handler = NextAuth({
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET
-        })
+        }),
+
     ],
     callbacks: {
         async session({ session }) {
@@ -21,7 +23,7 @@ const handler = NextAuth({
         async signIn({ profile }) {
             try {
                 await connectToDB();
-                //chek if a usear already exists
+                //check if an user already exists
                 const userExists = await User.findOne({
                     email: profile.email
                 })

@@ -20,6 +20,7 @@ function page() {
     const [number, setNumber] = useState()
     const [myContacts, setMyContacts] = useState([]);
     const [loading, setLoading] = useState(true)
+    const [add, setAdd] = useState(false)
 
     /*     const handleEdit = (post) => {
             router.push(`/update-prompt?id=${post._id}`);
@@ -53,11 +54,11 @@ function page() {
             const response = await fetch(`/api/users/${session?.user.id}/contacts`);
             const data = await response.json();
 
-            setMyContacts(data);
+            setMyContacts(data.sort((a, b) => a.name.localeCompare(b.name)));
             setLoading(false)
         };
         if (session?.user.id) fetchContacts();
-    }, [session?.user.id]);
+    }, [session?.user.id, add]);
 
     const addContact = async (e) => {
         e.preventDefault();
@@ -74,7 +75,11 @@ function page() {
             });
             if (response.ok) {
                 console.log(`added`)
-                fetchContacts()
+                setAdd(!add)
+                setName(''); // Clear the name field
+                setNumber(''); // Clear the number field
+                setEmail(''); // Clear the email field
+
             }
 
         } catch (error) {

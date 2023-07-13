@@ -14,11 +14,12 @@ import AddIcon from '@mui/icons-material/Add';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { useSession } from "next-auth/react";
 
 
 const AppointmentForm = ({ createAppointment, personName, title, handleChange, onChangeTitle, onCancel, time, onChangeTime }) => {
-    const [userId, setUserId] = useState()
     const [myContacts, setMyContacts] = useState([]);
+    const { data: session } = useSession();
 
     const ITEM_HEIGHT = 50;
     const ITEM_PADDING_TOP = 5;
@@ -30,22 +31,17 @@ const AppointmentForm = ({ createAppointment, personName, title, handleChange, o
             },
         },
     };
-    const fetchContacts = async () => {
-        const response = await fetch(`/api/users/${userId}/contacts`);
-        const data = await response.json();
-
-        setMyContacts(data);
-    };
-
     useEffect(() => {
+        const fetchContacts = async () => {
+            const response = await fetch(`/api/users/${session?.user.id}/contacts`);
+            const data = await response.json();
 
-        if (userId) fetchContacts();
-    }, [userId]);
+            setMyContacts(data);
+        };
+        if (session?.user.id) fetchContacts();
+    }, [session?.user.id]);
 
 
-    useEffect(() => {
-        setUserId(localStorage.getItem('userId'))
-    }, [])
 
 
 
@@ -108,10 +104,11 @@ const AppointmentForm = ({ createAppointment, personName, title, handleChange, o
 
                         <p className='blue_gradient'>Cancel</p>
                     </button>
-                    <button type='submit'
-                        className='blue_btn '>
-                        <AddIcon style={{ color: '#FFF' }} />
-                    </button>
+                    {title === '' ? null :
+                        <button type='submit'
+                            className='blue_btn'>
+                            <AddIcon style={{ color: '#FFF' }} />
+                        </button>}
                 </div>
             </Box>
         </div>)

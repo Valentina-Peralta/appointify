@@ -8,6 +8,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import GoogleIcon from '@mui/icons-material/Google';
 
 const Nav = () => {
     const { data: session } = useSession();
@@ -21,7 +22,9 @@ const Nav = () => {
             setProviders(res);
 
         })();
+        console.log(providers)
     }, []);
+    console.log(providers)
 
     return (
         <nav>
@@ -75,16 +78,19 @@ const Nav = () => {
                 ) : <>
                     {providers &&
                         Object.values(providers).map((provider) => (
+                            <>
+                                <GoogleIcon
+                                    className="login"
+                                    key={provider.name}
+                                    onClick={() => {
 
-                            <LoginIcon
-                                className="login"
-                                key={provider.name}
-                                onClick={() => {
+                                        signIn(provider.id)
 
-                                    signIn(provider.id)
+                                    }}
+                                />
+                                {/*                                 <p className="secondary_text"> Sign in with Google</p>
+ */}                            </>
 
-                                }}
-                            />
                         ))}
 
                 </>}
