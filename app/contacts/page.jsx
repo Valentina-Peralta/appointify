@@ -141,7 +141,6 @@ function page() {
                                         setFilteredContacts(myContacts);
                                     }
                                 }}
-                                En
 
 
                                 InputProps={{

@@ -29,6 +29,13 @@ const Home = () => {
     const [currentAppointments, setCurrentAppointments] = useState([])
     const [highlightedDays, setHighlightedDays] = useState([])
     const [myContacts, setMyContacts] = useState([]);
+    const options = {
+        weekday: 'long', // Día de la semana completo (por ejemplo, "Thursday")
+        year: 'numeric', // Año completo (por ejemplo, "2023")
+        month: 'long', // Mes completo (por ejemplo, "July")
+        day: 'numeric' // Día del mes (por ejemplo, "13")
+    };
+    const dateFormatter = new Intl.DateTimeFormat('en-US', options);
 
 
     console.log(session, appointments)
@@ -146,6 +153,7 @@ const Home = () => {
                 console.log('appointment created succesfully')
                 setAddForm(false)
                 setTitle('')
+                setPersonName([])
 
             }
         } catch (error) {
@@ -173,7 +181,7 @@ const Home = () => {
                     />
 
                     <div className='appointments-wrapper'>
-                        <p className='bold blue_gradient'>{value.toDateString()}</p>
+                        <p className='bold blue_gradient'>{dateFormatter.format(value)}</p>
                         {loading ?
                             <Image width={100} height={100} src='/assets/Loader.svg' />
 
@@ -185,7 +193,11 @@ const Home = () => {
                                 onChangeTitle={(e) => setTitle(e.target.value)}
                                 time={time}
                                 onChangeTime={(e) => setTime(e)}
-                                onCancel={() => setAddForm(false)}
+                                onCancel={() => {
+                                    setAddForm(false)
+                                    setTitle('')
+                                    setPersonName([])
+                                }}
                             /> : !addForm && currentAppointments.length > 0 ?
                                 currentAppointments.map((appointment) => (
 
