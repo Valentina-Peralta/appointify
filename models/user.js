@@ -15,23 +15,23 @@ const UserSchema = new Schema({
     image: {
         type: String,
     },
-    password: {
-        type: String,
-        required: [true, 'Password is required']
-    },
-    isVerified: {
-        type: Boolean,
-        default: false
-    },
-    isAdmin: {
-        type: Boolean,
-        default: false
-    },
-    forgotPasswordToken: String,
-    forgotPasswordTokenExpiry: Date,
-    verifyToken: String,
-    verifyTokenExpiry: Date,
-
+    /*  password: {
+         type: String,
+         required: [true, 'Password is required']
+     },
+     isVerified: {
+         type: Boolean,
+         default: false
+     },
+     isAdmin: {
+         type: Boolean,
+         default: false
+     },
+     forgotPasswordToken: String,
+     forgotPasswordTokenExpiry: Date,
+     verifyToken: String,
+     verifyTokenExpiry: Date,
+  */
 });
 
 // Hash the password before saving to the database
@@ -51,7 +51,7 @@ UserSchema.pre('save', async function (next) {
 });
 
 // Method to validate password
-UserSchema.methods.isValidPassword = async function (password) {
+/* UserSchema.methods.isValidPassword = async function (password) {
     try {
         return await bcrypt.compare(password, this.password);
     } catch (error) {
@@ -59,7 +59,7 @@ UserSchema.methods.isValidPassword = async function (password) {
     }
 };
 
-
+ */
 const User = models.User || model("User", UserSchema);
 
 export default User;
