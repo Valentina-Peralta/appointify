@@ -4,7 +4,6 @@ import EditIcon from '@mui/icons-material/Edit';
 
 const AppointmentCard = ({ appointment, handleDelete }) => {
 
-    console.log(appointment)
     return (
         <div className='appointment-card'>
             <div>

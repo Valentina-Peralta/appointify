@@ -21,7 +21,7 @@ function page() {
     const [myContacts, setMyContacts] = useState([]);
     const [loading, setLoading] = useState(true)
     const [add, setAdd] = useState(false)
-    const [filteredContacts, setFilteredContacts] = useState(myContacts); // Variable para almacenar los contactos filtrados
+    const [filteredContacts, setFilteredContacts] = useState(myContacts);
 
 
     /*     const handleEdit = (post) => {
@@ -77,11 +77,10 @@ function page() {
                 }),
             });
             if (response.ok) {
-                console.log(`added`)
                 setAdd(!add)
-                setName(''); // Clear the name field
-                setNumber(''); // Clear the number field
-                setEmail(''); // Clear the email field
+                setName('');
+                setNumber('');
+                setEmail('');
 
             }
 
@@ -100,7 +99,6 @@ function page() {
                             <ContactCard
                                 key={contact._id}
                                 contact={contact}
-                                handleEdit={() => console.log('edit')}
                                 handleDelete={() => handleDelete && handleDelete(contact)}
                             />
                         ))}
@@ -125,18 +123,17 @@ function page() {
                                 variant="standard"
                                 value={name}
                                 onChange={(e) => {
-                                    const inputValue = e.target.value.toLowerCase(); // Convertir a minúsculas
+                                    const inputValue = e.target.value.toLowerCase();
 
                                     setName(inputValue);
 
                                     const updatedContacts = myContacts.filter((contact) => {
-                                        const contactName = contact.name.toLowerCase(); // Convertir a minúsculas
+                                        const contactName = contact.name.toLowerCase();
                                         return contactName.includes(inputValue);
                                     });
 
-                                    setFilteredContacts(updatedContacts); // Actualizar la lista de contactos filtrados
+                                    setFilteredContacts(updatedContacts);
 
-                                    // Si el valor del input está vacío, mostrar todos los contactos sin filtrar
                                     if (!inputValue) {
                                         setFilteredContacts(myContacts);
                                     }

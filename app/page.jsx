@@ -1,13 +1,10 @@
 'use client'
 import { useEffect, useState } from 'react';
 import ABlue from '../public/assets/ABlue.png'
-import A from '../public/assets/A.png'
 import '../styles/contacts.css'
-import Link from "next/link";
 import Calendar from "@/components/Calendar"
 import AppointmentForm from '@/components/AppointmentForm';
 import AppointmentCard from '@/components/AppointmentCard';
-import { add } from 'date-fns';
 import Image from 'next/image';
 import { useSession } from "next-auth/react";
 
@@ -61,7 +58,6 @@ const Home = () => {
     }, []);
 
 
-    console.log(session, appointments)
 
     useEffect(() => {
         const fetchContacts = async () => {
@@ -83,12 +79,10 @@ const Home = () => {
         };
         if (session?.user.id) {
             fetchAppointments();
-            console.log(session, appointments)
         }
 
     }, [session?.user.id, addForm]);
 
-    console.log(session, appointments)
 
     useEffect(() => {
         const appointmentsByMonth = appointments.filter(appointment => appointment.month === month);

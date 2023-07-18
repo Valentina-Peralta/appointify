@@ -20,9 +20,7 @@ const Nav = () => {
             setProviders(res);
 
         })();
-        console.log(providers)
     }, []);
-    console.log(providers)
 
     return (
         <nav>
