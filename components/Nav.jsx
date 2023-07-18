@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import LogoutIcon from '@mui/icons-material/Logout';
-import LoginIcon from '@mui/icons-material/Login';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -20,9 +19,7 @@ const Nav = () => {
             setProviders(res);
 
         })();
-        console.log(providers)
     }, []);
-    console.log(providers)
 
     return (
         <nav>
@@ -47,7 +44,8 @@ const Nav = () => {
                                     onClick={() => setNavigation('appointments')}
 
                                     className={navigation === 'appointments' ? "orange_btn" : "outline_btn"}>
-                                    <CalendarMonthIcon />                                </button>
+                                    <CalendarMonthIcon />
+                                </button>
                             </Link>
                             <Link href='/contacts' >
                                 <button

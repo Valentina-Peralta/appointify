@@ -89,12 +89,12 @@ const AppointmentForm = ({ createAppointment, personName, title, handleChange, o
                     renderValue={(selected) => selected.join(', ')}
                     MenuProps={MenuProps}
                 >
-                    {myContacts?.map((contact) => (
+                    {myContacts.length > 0 ? myContacts.map((contact) => (
                         <MenuItem key={contact._id} value={contact.name}>
                             <Checkbox checked={personName.indexOf(contact.name) > -1} />
                             <ListItemText primary={contact.name} />
                         </MenuItem>
-                    ))}
+                    )) : <MenuItem><ListItemText primary="You don't have any contacts yet" /></MenuItem>}
                 </Select>
 
 
