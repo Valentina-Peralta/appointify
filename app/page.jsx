@@ -30,12 +30,36 @@ const Home = () => {
     const [highlightedDays, setHighlightedDays] = useState([])
     const [myContacts, setMyContacts] = useState([]);
     const options = {
-        weekday: 'long', // Día de la semana completo (por ejemplo, "Thursday")
-        year: 'numeric', // Año completo (por ejemplo, "2023")
-        month: 'long', // Mes completo (por ejemplo, "July")
-        day: 'numeric' // Día del mes (por ejemplo, "13")
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
     };
     const dateFormatter = new Intl.DateTimeFormat('en-US', options);
+
+    const [weather, setWeather] = useState({
+        celcius: 10,
+        name: 'London',
+        main: 'Clouds'
+    })
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Obtener la ubicación del usuario
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                    const { latitude, longitude } = position.coords;
+
+                    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=7ca6af663011c294f639e4c682834e46&units=metric`);
+                    const data = await response.json();
+                    console.log(data);
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
 
     console.log(session, appointments)
