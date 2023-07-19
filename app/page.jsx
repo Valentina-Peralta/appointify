@@ -180,11 +180,11 @@ const Home = () => {
 
                     <div className='appointments-wrapper'>
                         <div className="current_date_data"> <p className='bold blue_gradient'>{day}-0{month}-{year}</p>
-                            <Weather
+                            {/*     <Weather
                                 value={value}
                                 year={year}
                                 month={month}
-                                day={day} />
+                                day={day} /> */}
 
                         </div>
                         {loading ?
