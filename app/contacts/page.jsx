@@ -11,6 +11,8 @@ import { useEffect, useState } from 'react';
 import { useSession } from "next-auth/react";
 import ContactCard from '@/components/ContactCard';
 import Image from 'next/image';
+import ABlue from '../../public/assets/ABlue.png'
+
 
 
 function page() {
@@ -40,7 +42,7 @@ function page() {
                 });
 
                 const filteredContacts = myContacts.filter((item) => item._id !== contact._id);
-
+                setMyContacts(filteredContacts)
                 setFilteredContacts(filteredContacts);
             } catch (error) {
                 console.log(error);
@@ -103,6 +105,12 @@ function page() {
                             />
                         ))}
                         {loading && <Image width={100} height={100} src='/assets/Loader.svg' />}
+                        {filteredContacts.length == 0 ?
+                            <div className='empty_schedule'>
+                                <Image width={250} height={250} src={ABlue} />
+                                <p className='bold'>You don't have any contacts yet</p>
+                            </div>
+                            : null}
                     </div>
                     <div className="add-wrapper">
                         <h2 className='blue_gradient'>Contacts</h2>
@@ -123,12 +131,12 @@ function page() {
                                 variant="standard"
                                 value={name}
                                 onChange={(e) => {
-                                    const inputValue = e.target.value.toLowerCase();
+                                    const inputValue = e.target.value.toLowerCase(); // Convertir a minúsculas
 
                                     setName(inputValue);
 
                                     const updatedContacts = myContacts.filter((contact) => {
-                                        const contactName = contact.name.toLowerCase();
+                                        const contactName = contact.name.toLowerCase(); // Convertir a minúsculas
                                         return contactName.includes(inputValue);
                                     });
 

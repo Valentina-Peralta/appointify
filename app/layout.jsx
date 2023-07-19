@@ -5,7 +5,7 @@ import Provider from '@/components/Provider'
 
 export const metadata = {
     title: "Appointify",
-    description: "",
+    description: "Manage your appointments and contacts",
 }
 
 const RootLayout = ({ children }) => {

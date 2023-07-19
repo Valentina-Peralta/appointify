@@ -18,6 +18,9 @@ const ContactCard = ({ contact, handleDelete, }) => {
 
             <div className='contact_options'>
 
+
+
+
                 <DeleteIcon
                     style={{ color: '#10045c' }}
 

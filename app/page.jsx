@@ -7,6 +7,7 @@ import AppointmentForm from '@/components/AppointmentForm';
 import AppointmentCard from '@/components/AppointmentCard';
 import Image from 'next/image';
 import { useSession } from "next-auth/react";
+import Weather from '@/components/Weather';
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
     const [addForm, setAddForm] = useState(false)
     const [personName, setPersonName] = useState([]);
     const [value, setValue] = useState(new Date());
+
     const day = value.getDate()
     const month = value.getMonth() + 1
     const year = value.getFullYear()
@@ -34,30 +36,9 @@ const Home = () => {
     };
     const dateFormatter = new Intl.DateTimeFormat('en-US', options);
 
-    const [weather, setWeather] = useState({
-        celcius: 10,
-        name: 'London',
-        main: 'Clouds'
-    })
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // Obtener la ubicación del usuario
-                navigator.geolocation.getCurrentPosition(async (position) => {
-                    const { latitude, longitude } = position.coords;
-
-                    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=7ca6af663011c294f639e4c682834e46&units=metric`);
-                    const data = await response.json();
-                    console.log(data);
-                });
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-    }, []);
 
 
+    console.log(session, appointments)
 
     useEffect(() => {
         const fetchContacts = async () => {
@@ -198,9 +179,16 @@ const Home = () => {
                     />
 
                     <div className='appointments-wrapper'>
-                        <p className='bold blue_gradient'>{dateFormatter.format(value)}</p>
+                        <div className="current_date_data"> <p className='bold blue_gradient'>{day}-0{month}-{year}</p>
+                            <Weather
+                                value={value}
+                                year={year}
+                                month={month}
+                                day={day} />
+
+                        </div>
                         {loading ?
-                            <Image width={100} height={100} src='/assets/Loader.svg' />
+                            <Image width={100} height={100} src='/assets/Loader.svg' alt='loader' />
 
                             : addForm ? <AppointmentForm
                                 createAppointment={createAppointment}

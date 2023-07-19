@@ -70,6 +70,16 @@ footer {
 
 }
 
+.current_date_data {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.weather {
+    font-size: .9rem;
+}
+
 /*NAV*/
 .mobile_nav {
     display: none;
@@ -346,6 +356,7 @@ button:hover {}
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 70%;
 }
 
 .empty_schedule img {
